@@ -27,7 +27,7 @@
                     var emojiCOntainer = document.createElement("div");
                     emojiCOntainer.setAttribute("class", "emoji-container");
                     bodyCOntainer.appendChild(emojiCOntainer);
-                    for (var i = 1; i <= 20; i++) {
+                    for (var i = 0; i <= 20; i++) {
                         emoji = document.createElement("div");
                         emoji.setAttribute("class", "emoji");
                         emoji.setAttribute("id", "emoji-" + i);
