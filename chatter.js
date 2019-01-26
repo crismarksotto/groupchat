@@ -18,9 +18,6 @@
                         
                         
 
-        
-
-
                 function createEmoji() {
                     var emoji;
                     var bodyCOntainer = document.getElementById("body");
@@ -45,6 +42,7 @@
                                                   var name = auth.Name;
                     var text = "<img style='width:128px;height:128px;' src='emoji/" + H + ".png' />";
                     var profilepicture = auth.Image;
+                    var userID = auth.ID;
                     
                     
                     if (name == '') {
@@ -57,7 +55,7 @@
         
                         isYou=true;
                         
-                        myDataRef.push().set({name: name, text: text, date: date, command:  command, profile:  profilepicture});
+                        myDataRef.push().set({name: name, text: text, date: date, command:  command, profile:  profilepicture, userID: userID});
                         isYou = false;
                 }
                 
@@ -123,7 +121,7 @@ function onSignIn(googleUser) {
                                   Email: profile.getEmail()
                         }
                   window.localStorage.setItem('user', JSON.stringify(user));
-                  myDataRef.push().set({name: "System", text: profile.getName() + " has joined the chat !", date: logindate, command:  "normal", profile:  "https://image.flaticon.com/icons/svg/149/149071.svg"}); //add sytem notification
+                  myDataRef.push().set({name: "System", text: profile.getName() + " has joined the chat !", date: logindate, command:  "normal", profile:  "https://image.flaticon.com/icons/svg/149/149071.svg", userID: '123456789'}); //add sytem notification
                    var parentContainer = document.getElementById("google-auth");        
                    parentContainer.style.display = "none";
 
@@ -132,15 +130,16 @@ function onSignIn(googleUser) {
 
                 myDataRef.on('child_added', function(snapshot) {
                                 var message = snapshot.val();
-                                displayChatMessage(message.name, message.text, message.date, message.command, message.profile);
+                                displayChatMessage(message.name, message.text, message.date, message.command, message.profile, message.userID);
                                 
                         
-                                function displayChatMessage(name, text, date, command, profile) {
+                                function displayChatMessage(name, text, date, command, profile, userID) {
                                         var auth = JSON.parse(localStorage.getItem('user'));
 
                                 var messageType = "received";
-                                
-                                        if(google.getName() == name || isYou){
+                                        console.log(google.getId());
+                                        if(google.getId() == userID || isYou){
+
                                                 messageType = "sent";
                                         }
                                 
@@ -258,10 +257,10 @@ function onSignIn(googleUser) {
     
     
                             $('#messageInput').keypress(function (e) {
-                                     console.log('test');
+                                   
                                      if(!event.shiftKey){
                                                      if (e.keyCode == 13) {
-                                                            console.log('test');
+                                                            
                                                             isNotif=true;
                                                             firstReload = false;
                                                             isYou=true;
@@ -271,6 +270,7 @@ function onSignIn(googleUser) {
                                                       var name = auth.Name;
                                                       var text = $('#messageInput').val();
                                                       var profilepicture = auth.Image;
+                                                      var userID = auth.ID;
     
     
                                                     
@@ -284,7 +284,7 @@ function onSignIn(googleUser) {
                                                             commandText = 'reload';
                                                         }
     
-                                                      myDataRef.push().set({name: name, text: text, date: date, command:  commandText, profile:  profilepicture});
+                                                      myDataRef.push().set({name: name, text: text, date: date, command:  commandText, profile:  profilepicture, userID: userID});
                                                       $('#messageInput').val('');
                                                       isYou = false;
                                                     }
