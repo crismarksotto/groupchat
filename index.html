@@ -1,33 +1,170 @@
 <!doctype html>
 <html>
 	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- change content of google meta -->
-	<meta name="google-signin-client_id" content="">
-  <!--Java script for firebase-->
-    <title>Chat</title>
-	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script> 
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script> 
-	<link rel="icon" href="https://stackideas.cachefly.net/images/apps/366/logo.png" sizes="16x16" type="image/png">
-	<style>
-		@import url('https://fonts.googleapis.com/css?family=Product+Sans');
-		@import url('https://fonts.googleapis.com/css?family=Roboto');
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="google-signin-client_id" content="842691085196-a300g8kjggl78uk9nogoq22t3j2j3nqf.apps.googleusercontent.com">
+  
+        <title>Chatter</title>
+         <link href="public/css/bulma.css" rel="stylesheet">
+    	<link rel="icon" href="https://res.cloudinary.com/dntgxd5cn/image/upload/v1549096657/messenger.png" sizes="16x16" type="image/png">
+    
+    	<style>
+    		@import url('https://fonts.googleapis.com/css?family=Product+Sans');
+    		@import url('https://fonts.googleapis.com/css?family=Roboto');
+    		/*overwrite emoji height n width*/
+            .em, .em-svg{ height:32px !important; width:32px !important; }
+    	</style>
+    	<link rel="stylesheet" type="text/css" href="style.css">
+    	<link rel="stylesheet" type="text/css" href="public/css/balloon.css">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script> 
+        
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script> 
+		<script type="text/javascript" src="chatter.js"></script>
+        
+   
+        <link rel="stylesheet" href="public/css/emojiarea.css">
+        <script type="text/javascript" src="public/js/emojiarea.js"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        
 
-	</style>
-	<link rel="stylesheet" type="text/css" href="style.css">
+
+        
 	</head>
-	<body id="body">
-		
+	
+	
+	
+	
+	
+	<body id="main-body">
+	    
+	   <!-- <div id="body">-->
+	        
+	   <!--</div>-->
+	    
+	    <!-- START DRAWER -->
+	   
+	    
+<div class="columns is-gapless woomdagdhfjetyw" id="main">
+        <div id="wid_rxio66nert" class="empty-container column woomda26syrtffop is-3" style="background-color: #fff;">
+            <div class="columns woomdayrufigojy8697">
+                <div class="column is-1"><i class="fa fa-gear"></i></div>
+                <div class="column">Conversations</div>
+                <div class="column is-1"><i class="fa fa-plus"></i></div>
+            </div>
+            <div class="columns convo">
+                <div class="column convo-image is-2"><img src="https://image.flaticon.com/icons/svg/149/149071.svg"></div>
+                <div class="column convo-name">Group Messenger</div>
+                
+            </div>
+        </div>
+        
+        <div id="wid_rxiofgegg2" class="empty-container column woomda3jdlpfhvv" style="background-color: #fff;">
+            <div id="wid_iz6dbix6b" class="empty-container woomdaapgmnfc6w">
+                <div id="wid_yz35ixzw" class="empty-container columns woomdaa0weg0ar9">
+                    <div id="wid_f3lrsywim" class="empty-container column woomdau0a4p66j2">
+                        <div id="wid_w2gfqm8mh" class="woomdalsrks3j0c">Group Messenger</div><img onclick="hideChatOptions()" id="wid_oh1i6aevh" src="https://res.cloudinary.com/dpy6jmm1x/image/upload/q_auto,c_scale/v1549081300/ppyizsvhvcydwmo4ocga.png" class="woomdaojwgf28ui" /></div>
+                </div>
+            </div>
+            <div id="wid_zudl5kmou" class="empty-container woomdapytxm1d9w">
+                <div id="wid_16dbjhabn" class="empty-container columns woomdato0nfpyqa is-gapless">
+                    
+                    <div id="wid_w640f4xqu" class="empty-container column woomdar1h4ugdml">
+                        <div id="body" class="woomdaxge345hterd"></div>
+                        <div id="messageDiv22" class="woomda45hfbxceioo"></div>
+                    </div>
+                    <div id="wid_rxio66ncm" class="empty-container column woomda3oi9b8jnd is-3">
+                        <div class="columns woomdagfjzkoweye65j">
+                            <div class="chat-icon column is-2"><img src="https://image.flaticon.com/icons/svg/149/149071.svg"></div>
+                            <div class="chat-info column"><p>Group Messenger</p><p id="active-hours">Active 3 hours</p><div id="members"></div></div>
+                        </div>
+                        <div class="columns woomda5trufjgll7op" id="controls">
+                            <div onclick="showOption('emoji', 'Change Emoji')" class="column options"><i class="fa fa-hand-scissors-o"></i> <span>Emoji</span></div>
+                            <div onclick="showOption('emoji', 'Change Color')" class="column options"><i class="fa fa-paint-brush"></i> <span>Color</span></div>
+                            <div onclick="showOption('emoji', 'Change Background')" class="column options"><i class="fa fa-circle"></i> <span>Background</span></div>
+                            <div onclick="showOption('emoji', '')" class="column options"><i class="fa fa-bell-o"></i> <span>Notification</span></div>
+                            <div onclick="showOption('emoji', '')" class="column options"><i class="fa fa-volume-control-phone"></i> <span>Commands</span></div>
+                           
+                        </div>
+                        <div class="columns">
+                            <div class="column"> 
+                                <div class="shared-label">Shared photos</div>
+                                <div id="shared-content" class="shared-content columns is-multiline"></div>
+                            </div>
+                           
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+        
+        
+
+
+		<!-- Colour Panel Start -->
+		<!--<div class="colour-panel">-->
+		<!--    <button id="default" title="Default" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#f6f6f6 !important;} #messagesDiv{background-color: #fff !important;border: 1px solid #f1f1f1 !important;} .sent{background:linear-gradient(-45deg, #0756F2, #CE1A7F , #0756F2);background-size: 400% 400%;background-attachment: fixed;}</style>';" style="background: #f6f6f6 ;"></button>-->
+
+		<!--	<button id="dark" title="Dark" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#212121 !important;}	#messagesDiv{background-color: #2E3131 !important;border: 1px solid #2E3131 !important;} .sent{background:linear-gradient(-45deg, #29323c,#485563, #2e3131);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #0E1111 ;"></button>-->
+
+		<!--	<button id="blue" title="Blue" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#3B5998 !important;}	#messagesDiv{background-color: #DFE3EE !important;border: 1px solid #DFE3EE !important;} .sent{background:linear-gradient(-45deg, #3B5998, #8B9DC3, #3B5998);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #3B5998 ;"></button>-->
+			
+		<!--	<button id="red" title="Red" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#d64541 !important;}	#messagesDiv{background-color: #f1a9a0 !important;border: 1px solid #f1a9a0 !important;} .sent{background:linear-gradient(-45deg, #CB356B,#BD3F32, #D91E18);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #d64541 ;"></button>-->
+			
+		<!--	<button id="violet" title="Violet" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#674172 !important;}	#messagesDiv{background-color: #aea8d3 !important;border: 1px solid #aea8d3 !important;} .sent{background:linear-gradient(-45deg, #667eea, #764ba2, #667eea);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #674172 ;"></button>-->
+
+		<!--	<button id="teal" title="Teal" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#009688 !important;}	#messagesDiv{background-color: #B2DFDB !important;border: 1px solid #B2DFDB !important;} .sent{background:linear-gradient(-45deg, #004D40, #1DE9B6, #004D40);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #009688 ;"></button>-->
+
+		<!--	<button id="yellow" title="Yellow" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#E4C35C !important;}	#messagesDiv{background-color: #FFF9DE !important;border: 1px solid #FFF9DE !important;} .sent{background:linear-gradient(-45deg, #FFC107, #E65100, #FFC107);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #E4C35C ;"></button>-->
+
+		<!--	<button id="orange" title="Orange" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#FF7043 !important;}	#messagesDiv{background-color: #FFCCBC !important;border: 1px solid #FFCCBC !important;} .sent{background:linear-gradient(-45deg, #fc6076, #ff9a44, #fc6076);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #FF7043 ;"></button>-->
+
+		<!--	<button id="green" title="Green" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#4DAF7C !important;}	#messagesDiv{background-color: #E8F5E9 !important;border: 1px solid #E8F5E9 !important;} .sent{background:linear-gradient(-45deg, #0BA360, #3CBA92, #1E824C);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #4DAF7C ;"></button>-->
+
+		<!--	<button id="pink" title="Pink" class="colour-but" onclick="document.getElementById('temporary_style').innerHTML = '<style>body{background-color:#FA7268 !important;}	#messagesDiv{background-color: #FFCDD2 !important;border: 1px solid #FFCCBC !important;} .sent{background:linear-gradient(-45deg, #f78ca0, #f9748f, #fd868c,#fe9a8b);background-size: 400% 400%;background-attachment: fixed;}</style>'" style="background: #FA7268;"></button>-->
+		<!--	<script>function chg(color){ document.getElementById(color).click(); }</script>-->
+		<!--</div>-->
+
+		<!-- Colour Panel End -->
+  <!--      <div class="commands-panel">-->
+  <!--         <input data-emojiable="true" row='4' type='text' id='test' placeholder='Type a message...'/>-->
+  <!--      </div>-->
+
+		<!--<div id="temporary_style"></div>-->
+		<!--<div id="bg"></div>-->
+		<!--<div id="message"></div>-->
+		<!--<div id="sent"></div>-->
+
+
 		<div id="google-auth" class="google-auth" style="display: none">
 			<div class="login-label">Login with Google</div>
 			<div class="g-signin2" data-onsuccess="onSignIn">Sign in</div>
 	    </div>
-		<script type="text/javascript" src="chatter.js"></script>
+	    
+	    
+
+        <div id="image-modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <p class="image is-4by3">
+                <img id="image-modal-image" src="https://bulma.io/images/placeholders/1280x960.png" alt="">
+                </p>
+            </div>
+            <button onclick="closemodal()" class="modal-close is-large" aria-label="close"></button>
+        </div>
+        
+        
+        <div id="temporary_style"></div>
 		
-		   
 	</body>
 </html>
-<!-- CKEDITOR.instances.editor.document.getBody().getText(); -->
+<!-- CKEDITOR.instances.editor.document.getBody().getText(); -->			
